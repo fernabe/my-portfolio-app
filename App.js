@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import PortfolioList from './screens/PortfolioList';
+import Project from './screens/Project';
 
 const Stack = createStackNavigator();
 
@@ -10,10 +12,10 @@ const MyStack = () => {
       <Stack.Navigator>
         <Stack.Screen
           name="Home"
-          component={HomeScreen}
+          component={PortfolioList}
           options={{ title: 'Welcome' }}
         />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Profile" component={Project} />
       </Stack.Navigator>
     </NavigationContainer>
   );
