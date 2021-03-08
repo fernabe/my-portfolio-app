@@ -6,18 +6,20 @@ const imageHeight = Math.round(dimensions.width * 9 / 16);
 const imageWidth = dimensions.width;
 
 
-const PortfolioItem = ({navigation, title, image}) => {  
+const PortfolioItem = ({navigation, title, image, content}) => {  
     return(
         <View style={styles.item}>
             <Image 
-            source={image}
+            source={{ uri: image}}
             style={styles.image}
+            resizeMode='cover'
             />
             <Text 
                 style={styles.title} 
                 onPress={() =>
                     navigation.navigate('Profile', { 
                         title,
+                        content,
                         image
                     }   
                 )}
@@ -32,6 +34,7 @@ const styles = StyleSheet.create({
     item: {
         backgroundColor: '#f9c2ff',
         paddingBottom: 20,
+        paddingTop: 20,
         marginVertical: 8,
         marginHorizontal: 16,
         flex: 1,
@@ -42,9 +45,8 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     image:{
-        width: 300,
-        height: 150,
-        resizeMode: 'contain'
+        width: imageWidth,
+        height: imageHeight,
     }
 });
 

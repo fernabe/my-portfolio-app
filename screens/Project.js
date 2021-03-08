@@ -1,15 +1,22 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet} from 'react-native';
 
-const Project = ({ navigation, route }) => {  
+const Project = ({ route }) => {  
     return (
-        <View>
+        <View style={styles.container}>
             <Image 
-                source={ route.params.image }
+                source={{ uri:route.params.image }}
                 style={styles.image}
+                resizeMode='contain'
             />
             <Text
-                style={styles.title}>{route.params.title}</Text>
+                style={styles.title}
+            >
+                {route.params.title}
+            </Text>
+
+            <Text>{route.params.content}</Text>
+
         </View>
     );
 };
@@ -18,19 +25,23 @@ const Project = ({ navigation, route }) => {
 const styles = StyleSheet.create({
     image: {
         width: 150,
-        height: 150
+        height: 150, 
     },
     title: {
         fontSize: 32,
-        textAlign: 'center'
+        textAlign: 'center',
+        marginTop: 20   
     },
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: '#cccccc',
+        padding: 20
+    }
 
 });
 
 export default Project;
-
-
-
 
 
 

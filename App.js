@@ -6,19 +6,19 @@ import Project from './screens/Project';
 
 const Stack = createStackNavigator();
 
-const MyStack = () => {
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
           name="Home"
           component={PortfolioList}
-          options={{ title: 'Welcome' }}
+          options={{ title: 'My Porfolio' }}
         />
-        <Stack.Screen name="Profile" component={Project} />
+        <Stack.Screen name="Profile" component={Project} options={{ title: 'Project' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
-export default MyStack;
+export default App;

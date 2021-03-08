@@ -1,37 +1,49 @@
 import React from 'react';
 import { View, FlatList, StyleSheet, Text, StatusBar } from 'react-native';
+import axios from 'axios';
 import PortfolioItem from './PortfolioItem';
 
-const DATA = [
-    {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-        title: 'Javascript Project',
-        image: require('../assets/js.png')
-    },
-    {
-        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-        title: 'React Project',
-        image: require('../assets/react-logo.png'),
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d72',
-        title: 'Mern Project',
-        image: require('../assets/mern-logo.png'),
-    }
-];
 
 const PortfolioList = ({ navigation }) => {
+    
+    const [projects, setData] = React.useState({});
 
+    React.useEffect(() => {
+        axiosApiCall();
+    });
+    
+    const axiosApiCall = () => {
+        axios({
+            "method": "GET",
+            "url": "https://evening-castle-95061.herokuapp.com/projects/",
+        })
+        .then((response) => {
+            let project_names = response.data.map((project) => ( 
+                {
+                    id: project.id,
+                    title: project.Titulo,
+                    content: project.Contenido,
+                    image: project.Imagen.url
+                }
+            ));
+            setData(project_names);
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+    
+    
     const renderItem = ({item}) => (
-        <PortfolioItem navigation={navigation} title={item.title} image={item.image}/>
+        <PortfolioItem navigation={navigation} title={item.title} image={item.image} content={item.content}/>
     )
 
     return (
         <View style={styles.container}>
             <FlatList
-                data={DATA}
+                data={projects}
                 renderItem={renderItem}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item.id.toString()}
             />
         </View>
     );
