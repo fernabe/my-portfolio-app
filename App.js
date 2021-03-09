@@ -15,7 +15,7 @@ const App = () => {
           component={PortfolioList}
           options={{ title: 'My Porfolio' }}
         />
-        <Stack.Screen name="Profile" component={Project} options={{ title: 'Project' }} />
+        <Stack.Screen name="Project" component={Project} options={{ title: 'Project' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

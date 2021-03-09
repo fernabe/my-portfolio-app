@@ -11,7 +11,7 @@ const PortfolioItem = ({navigation, title, image, content}) => {
         <TouchableOpacity 
             style={styles.item}
             onPress={() =>
-                navigation.navigate('Profile', { 
+                navigation.navigate('Project', { 
                     title,
                     content,
                     image
